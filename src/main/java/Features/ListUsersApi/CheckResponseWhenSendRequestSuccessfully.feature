@@ -3,10 +3,14 @@
 Feature: Check response when send request successfully
 
   @HappyCase
-  Scenario: Check response when send request successfully
+  Scenario Outline: Check response when send request successfully
     Given I have valid URL and method
       | URL                                | method |
       | https://reqres.in/api/users?page=2 | GET    |
-
     When I send request
-    Then I get status code and response
+    Then I get <statuscode>
+    Then I get response body with <page>
+
+    Examples: 
+      | statuscode | page |
+      |        200 |    2 |
